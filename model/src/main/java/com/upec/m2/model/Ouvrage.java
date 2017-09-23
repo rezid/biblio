@@ -6,42 +6,56 @@ package com.upec.m2.model;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 /**
  *
- * @author Salifou BERTHE
+ * @author github name : rezid
  */
-//TODO : JPA : Mettre l'annotation pour que cette classe Ouvrage soit une entité 
-//TODO : JPA : Le nom de la table doit être "OUVRAGE_01"
 //TODO : JPA : Mettre les requêtes nommées
+@Entity
+@Table(name="OUVRAGE_01")
 public class Ouvrage implements Serializable{
-	private static final long serialVersionUID = 1L;
-	//TODO : JPA : Clé primaire avec  stratégie de génération IDENTITY.
-	//TODO : JPA : Mettre l'annotation pour que le nom de la colonne de cet attribute soit  "ID"
+    private static final long serialVersionUID = 1L;
+    
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name="ID")
     private Long id;  	
-	
-	//TODO : JPA : Rendre cet attribut transient (JPA ne doit pas le persister)
+
+    @Transient
     private String auteur;
-	//TODO : JPA : Créer les constraintes de base de données :  champ obligatoire, 
-			 //256 caractères max et nom de la colonne "TITLE"
-	//TODO : BV : Créer une contrainte "NON NULL"			
+    
+    //TODO : BV : Créer une contrainte "NON NULL"
+    @Column(length=256, nullable=false, name="TITLE")
     private String titre;
-	//TODO : JPA : Créer les constraintes de base de données :  champ obligatoire, 
-			 //3072 caractères max et nom de la colonne DESCRIPTION	
-	//TODO : BV : Créer une contrainte "NON NULL"			 
-    private String description;
-	//TODO : JPA : Créer les constraintes de base de données : champ non obligatoire,
-			//nom de la colonne "PUB_DATE", format de date "DD/mm/YYYY" (sans heure/minute/seconde)
-	//TODO : BV : Créer une contrainte "DATE DANS lE PASSE"			
+    
+    //TODO : BV : Créer une contrainte "NON NULL"	
+    @Column(nullable=false, name="DESCRIPTION", length=3072)
+    private String description; 
+	
+    //TODO : BV : Créer une contrainte "DATE DANS lE PASSE"
+    @Column(nullable=true, name="PUB_DATE")
+    @Temporal(TemporalType.DATE)
     private Date dateDePublication;
-	//TODO : JPA : stocker sous la forme de valeur constante (EnumType.STRING) 
+    
+    @Enumerated(EnumType.STRING)
     private OuvrageStatusType statut;
-	//TODO : JPA : Stocker en données binaires
+    
+    @Lob
     private byte[] image;
     
-    // i have added this variable
     private String reference;
     
     
