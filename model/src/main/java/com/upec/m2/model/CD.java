@@ -17,7 +17,7 @@ import javax.persistence.MapKeyColumn;
  *
  * @author UPEC
  */
-@Entity
+// @Entity
 public class CD extends Ouvrage{
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "TITRES")

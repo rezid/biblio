@@ -17,7 +17,7 @@ import javax.persistence.Transient;
  *
  * @author UPEC
  */
-@Entity
+// @Entity
 public class DVD extends Ouvrage {
     private String sousTitres;
     @Transient

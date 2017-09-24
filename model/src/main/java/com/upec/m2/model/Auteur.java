@@ -24,7 +24,7 @@ import javax.persistence.SequenceGenerator;
  *
  * @author UPEC
  */
-@Entity
+// @Entity
 public class Auteur implements Serializable {
 
     private static final long serialVersionUID = 1L;

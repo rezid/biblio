@@ -17,7 +17,7 @@ import javax.persistence.Table;
  *
  * @author UPEC
  */
-@Entity
+//@Entity
 @Table(name = "LIVRE")
 //TODO : JPA : Ecrire une requête nommée "countLivres" qui retourne le nombre de livre en base 
 public class Livre extends Ouvrage {

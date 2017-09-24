@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.util.TimeZone;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -45,6 +46,9 @@ public class DomainMain {
     }
     
     public static final void main(String... args) throws Exception{
+        // By default SimpleDateFormat use local time zone but in database we use GMT+0 time zone
+        DATE_FORMAT.setTimeZone(TimeZone.getTimeZone("GMT"));
+        
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("com.upec.m2_model_jar_1.0-SNAPSHOTPU");
         EntityManager em = emf.createEntityManager();
         
@@ -52,7 +56,7 @@ public class DomainMain {
         
         Ouvrage o1 = new Ouvrage();
         o1.setAuteur("Médéric Munier ");
-        o1.setDateDePublication(DATE_FORMAT.parse("01/02/2013"));
+        o1.setDateDePublication(DATE_FORMAT.parse("22/06/1991"));
         o1.setDescription("Partant de zéro, \"Créez des applications web avec Java EE\" vous fera découvrir pas à pas le développement avec Java EE, en suivant les modèles de conception et les bonnes pratiques en vigueur dans le domaine. Médéric Munier vous guidera dans l'installation de votre environnement de développement et vous fera découvrir l'architecture de l'application. Pas à pas, vous apprendrez à construire votre application en appliquant le design pattern MVC, à manipuler les frameworks MVC avec JSF, et entrer ainsi dans le développement web professionnel, enfin à votre portée !");
         byte[] image  = loadImage("https://static.fnac-static.com/multimedia/FR/Images_Produits/FR/fnac.com/Visual_Principal_340/4/4/2/9791090085244/tsp20130225184736/Creez-des-applications-web-avec-Java-EE.jpg");
         o1.setImage(image);
